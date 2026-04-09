@@ -22,7 +22,7 @@ private fun List(
 }
 
 Como ficou depois
-O layout foi modernizado para melhorar a experiencia do usuario. Agora cada item apresenta um icone colorido a esquerda que indica se o lancamento foi pago ou esta pendente. A descricao do lancamento ganhou destaque em uma linha exclusiva. Na segunda linha, a data fica alinhada a esquerda e o valor formatado aparece a direita. Foi implementada uma logica de cores onde o vermelho representa despesas e o verde representa receitas, alem da inclusao do sinal negativo para valores de saida.
+Eu modernizei o layout para melhorar a experiencia do usuario. Agora cada item apresenta um icone colorido a esquerda que indica se o lancamento foi pago ou esta pendente. Deixei a descricao do lancamento com destaque em uma linha exclusiva. Na segunda linha, alinhei a data a esquerda e o valor formatado a direita. Implementei uma logica de cores diretamente no componente de lista utilizando os valores hexadecimais 0xFFCF5355 para despesas e 0xFF00984E para receitas, alem de incluir o sinal negativo para valores de saida. Eu utilizei a funcao formatar ja existente no projeto para manter a consistencia dos dados.
 
 Codigo alterado
 @Composable
@@ -35,6 +35,8 @@ private fun List(
         items(lancamentos) { lancamento ->
             val color = if (lancamento.tipo == TipoLancamentoEnum.DESPESA) Color(0xFFCF5355) else Color(0xFF00984E)
             val icon = if (lancamento.paga) Icons.Filled.ThumbUp else Icons.Filled.ThumbDownOffAlt
+            
+            // Por Zaroni - Eu utilizei a função formatar já existente
             val valorFormatado = if (lancamento.tipo == TipoLancamentoEnum.DESPESA) "-${lancamento.valor.formatar()}" else lancamento.valor.formatar()
 
             Row(

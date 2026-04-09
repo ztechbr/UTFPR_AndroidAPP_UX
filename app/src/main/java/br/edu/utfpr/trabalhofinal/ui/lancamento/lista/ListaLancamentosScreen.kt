@@ -168,7 +168,7 @@ private fun List(
         items(lancamentos) { lancamento ->
             val color = if (lancamento.tipo == TipoLancamentoEnum.DESPESA) Color(0xFFCF5355) else Color(0xFF00984E)
             val icon = if (lancamento.paga) Icons.Filled.ThumbUp else Icons.Filled.ThumbDownOffAlt
-            // Por Zaroni - Eu utilizei a função formatar já existente
+            // Por Zaroni: Eu utilizei a função formatar já existente
             val valorFormatado = if (lancamento.tipo == TipoLancamentoEnum.DESPESA) "-${lancamento.valor.formatar()}" else lancamento.valor.formatar()
 
             Row(
