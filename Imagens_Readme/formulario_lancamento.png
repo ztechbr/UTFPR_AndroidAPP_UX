@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>pinot-staging-user-uploads</BucketName><RequestId>TSBZ8GDPGFBPK5EZ</RequestId><HostId>etVJjSNjTPGQyPJgtNS0R3H+5u8uP7xMKQMLWmg3LmOq632QrTpcsC5ffVCvXmbcwcWPq4d+RCsVNaicurGxAw==</HostId></Error>
