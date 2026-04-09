@@ -217,7 +217,7 @@ private fun FormContent(
     ) {
         val formTextFieldModifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(vertical = 8.dp)
         FormTextField(
             modifier = formTextFieldModifier,
             label = stringResource(R.string.descricao),
@@ -256,7 +256,7 @@ private fun FormContent(
             onValueChanged = onDataAlterada,
             enabled = !processando
         )
-        val checkOptionsModifier = Modifier.padding(vertical = 8.dp)
+        val checkOptionsModifier = Modifier.padding(top = 8.dp, bottom = 8.dp, start = 48.dp)
         FormCheckbox(
             modifier = checkOptionsModifier,
             label = stringResource(R.string.paga),
@@ -266,9 +266,9 @@ private fun FormContent(
             },
             enabled = !processando
         )
-        Row {
+        Row(modifier = Modifier.padding(start = 48.dp)) {
             FormRadioButton(
-                modifier = checkOptionsModifier,
+                modifier = Modifier.padding(vertical = 8.dp),
                 value = TipoLancamentoEnum.DESPESA,
                 groupValue = TipoLancamentoEnum.valueOf(tipo.valor),
                 onValueChanged = { newValue ->
@@ -278,7 +278,7 @@ private fun FormContent(
                 enabled = !processando
             )
             FormRadioButton(
-                modifier = checkOptionsModifier,
+                modifier = Modifier.padding(vertical = 8.dp),
                 value = TipoLancamentoEnum.RECEITA,
                 groupValue = TipoLancamentoEnum.valueOf(tipo.valor),
                 onValueChanged = { newValue ->
