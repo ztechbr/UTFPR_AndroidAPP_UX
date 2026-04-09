@@ -81,6 +81,7 @@ class FormularioLancamentoViewModel(
         }
     }
 
+    // Por Zaroni - Validação de obrigatoriedade e conversão segura para evitar quebra do app ao colar textos inválidos
     private fun validarValor(valor: String): Int {
         if (valor.isBlank()) {
             return R.string.valor_obrigatorio

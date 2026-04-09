@@ -185,6 +185,7 @@ private fun List(
                     modifier = Modifier.size(40.dp)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
+                // Por Zaroni - A descrição ocupa a primeira linha sozinha e a segunda linha contém Data (esquerda) e Valor (direita)
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = lancamento.descricao,
