@@ -142,6 +142,9 @@ class FormularioLancamentoViewModel(
                 salvando = false,
                 lancamentoPersistidaOuRemovida = true
             )
+        } else {
+            // Por Zaroni - Exibe mensagem de erro se o formulário estiver inválido ao tentar salvar
+            state = state.copy(codigoMensagem = R.string.corrija_erros_antes_de_salvar)
         }
     }
 
