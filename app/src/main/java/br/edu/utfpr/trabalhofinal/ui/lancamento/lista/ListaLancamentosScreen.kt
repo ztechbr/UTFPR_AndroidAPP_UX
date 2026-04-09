@@ -230,17 +230,26 @@ private fun BottomBar(
         modifier = modifier
             .background(color = MaterialTheme.colorScheme.secondaryContainer),
     ) {
+        // Por Zaroni - Eu calculei o saldo e a cor correspondente para aplicar ao Totalizador
+        val saldo = lancamentos.calcularSaldo()
+        val saldoColor = if (saldo < BigDecimal.ZERO) Color(0xFFCF5355) else Color(0xFF00984E)
+        
         Totalizador(
             modifier = Modifier.padding(top = 20.dp),
             titulo = stringResource(R.string.saldo),
-            valor = lancamentos.calcularSaldo(),
-            textColor = MaterialTheme.colorScheme.secondary
+            valor = saldo,
+            textColor = saldoColor
         )
+
+        // Por Zaroni - Eu calculei a projeção e a cor correspondente para aplicar ao Totalizador
+        val projecao = lancamentos.calcularProjecao()
+        val projecaoColor = if (projecao < BigDecimal.ZERO) Color(0xFFCF5355) else Color(0xFF00984E)
+        
         Totalizador(
             modifier = Modifier.padding(bottom = 20.dp),
             titulo = stringResource(R.string.previsao),
-            valor = lancamentos.calcularProjecao(),
-            textColor = MaterialTheme.colorScheme.secondary
+            valor = projecao,
+            textColor = projecaoColor
         )
     }
 }
@@ -265,10 +274,12 @@ fun Totalizador(
             color = textColor
         )
         Spacer(Modifier.size(10.dp))
+        // Por Zaroni - Eu utilizei a função formatar e garanti o sinal de menos antes do cifrão para valores negativos
+        val valorFormatado = if (valor < BigDecimal.ZERO) "-${valor.abs().formatar()}" else valor.formatar()
         Text(
             modifier = Modifier.width(100.dp),
             textAlign = TextAlign.End,
-            text = valor.formatar(),
+            text = valorFormatado,
             color = textColor
         )
         Spacer(Modifier.size(20.dp))

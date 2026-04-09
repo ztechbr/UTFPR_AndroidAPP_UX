@@ -36,6 +36,7 @@ fun FormTextField(
     keyboardImeAction: ImeAction = ImeAction.Next,
     keyboardType: KeyboardType = KeyboardType.Text,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null
 ) {
     val hasError = errorMessageCode > 0
@@ -55,6 +56,7 @@ fun FormTextField(
                 keyboardType = keyboardType
             ),
             visualTransformation = visualTransformation,
+            leadingIcon = leadingIcon,
             trailingIcon = trailingIcon
         )
         if (hasError) {

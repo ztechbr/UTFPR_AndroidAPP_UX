@@ -11,6 +11,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.Notes
+import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.CircularProgressIndicator
@@ -36,12 +38,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import br.edu.utfpr.trabalhofinal.R
 import br.edu.utfpr.trabalhofinal.data.TipoLancamentoEnum
+import br.edu.utfpr.trabalhofinal.ui.lancamento.form.composables.ConfirmationDialog
 import br.edu.utfpr.trabalhofinal.ui.lancamento.form.composables.FormCheckbox
+import br.edu.utfpr.trabalhofinal.ui.lancamento.form.composables.FormDatePicker
 import br.edu.utfpr.trabalhofinal.ui.lancamento.form.composables.FormRadioButton
 import br.edu.utfpr.trabalhofinal.ui.lancamento.form.composables.FormTextField
 import br.edu.utfpr.trabalhofinal.ui.shared.composables.Carregando
 import br.edu.utfpr.trabalhofinal.ui.shared.composables.ErroAoCarregar
 import br.edu.utfpr.trabalhofinal.ui.theme.TrabalhoFinalTheme
+import java.time.LocalDate
 
 @Composable
 fun FormularioLancamentoScreen(
@@ -83,7 +88,7 @@ fun FormularioLancamentoScreen(
                     processando = viewModel.state.salvando || viewModel.state.excluindo,
                     onVoltarPressed = onVoltarPressed,
                     onSalvarPressed = viewModel::salvarLancamento,
-                    onExcluirPressed = viewModel::removerLancamento
+                    onExcluirPressed = viewModel::mostrarDialogConfirmacao
                 )
             }
         ) { paddingValues ->
@@ -101,6 +106,15 @@ fun FormularioLancamentoScreen(
                 onStatusPagamentoAlterado = viewModel::onStatusPagamentoAlterado,
                 onTipoAlterado = viewModel::onTipoAlterado
             )
+
+            if (viewModel.state.mostrarDialogConfirmacao) {
+                ConfirmationDialog(
+                    title = stringResource(R.string.atencao),
+                    text = stringResource(R.string.mensagem_confirmacao_remover_lancamento),
+                    onDismiss = viewModel::ocultarDialogConfirmacao,
+                    onConfirm = viewModel::removerLancamento
+                )
+            }
         }
     }
 }
@@ -190,7 +204,7 @@ private fun FormContent(
     paga: CampoFormulario,
     tipo: CampoFormulario,
     onDescricaoAlterada: (String) -> Unit,
-    onDataAlterada: (String) -> Unit,
+    onDataAlterada: (LocalDate) -> Unit,
     onValorAlterado: (String) -> Unit,
     onStatusPagamentoAlterado: (String) -> Unit,
     onTipoAlterado: (String) -> Unit
@@ -211,7 +225,13 @@ private fun FormContent(
             errorMessageCode = descricao.codigoMensagemErro,
             onValueChanged = onDescricaoAlterada,
             keyboardCapitalization = KeyboardCapitalization.Words,
-            enabled = !processando
+            enabled = !processando,
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.Notes,
+                    contentDescription = null
+                )
+            }
         )
         FormTextField(
             modifier = formTextFieldModifier,
@@ -220,15 +240,20 @@ private fun FormContent(
             errorMessageCode = valor.codigoMensagemErro,
             onValueChanged = onValorAlterado,
             keyboardType = KeyboardType.Number,
-            enabled = !processando
+            enabled = !processando,
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.AttachMoney,
+                    contentDescription = null
+                )
+            }
         )
-        FormTextField(
+        FormDatePicker(
             modifier = formTextFieldModifier,
             label = stringResource(R.string.data),
-            value = data.valor,
+            value = LocalDate.parse(data.valor),
             errorMessageCode = data.codigoMensagemErro,
             onValueChanged = onDataAlterada,
-            keyboardType = KeyboardType.Number,
             enabled = !processando
         )
         val checkOptionsModifier = Modifier.padding(vertical = 8.dp)

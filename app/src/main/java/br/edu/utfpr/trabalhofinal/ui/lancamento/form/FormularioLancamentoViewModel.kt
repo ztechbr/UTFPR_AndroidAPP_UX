@@ -74,17 +74,31 @@ class FormularioLancamentoViewModel(
         if (state.valor.valor != novoValor) {
             state = state.copy(
                 valor = state.valor.copy(
-                    valor = novoValor
+                    valor = novoValor,
+                    codigoMensagemErro = validarValor(novoValor)
                 )
             )
         }
     }
 
-    fun onDataAlterada(novaData: String) {
-        if (state.data.valor != novaData) {
+    private fun validarValor(valor: String): Int {
+        if (valor.isBlank()) {
+            return R.string.valor_obrigatorio
+        }
+        return try {
+            BigDecimal(valor)
+            0
+        } catch (e: Exception) {
+            R.string.valor_invalido
+        }
+    }
+
+    fun onDataAlterada(novaData: LocalDate) {
+        if (state.data.valor != novaData.toString()) {
             state = state.copy(
                 data = state.data.copy(
-                    valor = novaData
+                    valor = novaData.toString(),
+                    codigoMensagemErro = 0
                 )
             )
         }
@@ -134,6 +148,9 @@ class FormularioLancamentoViewModel(
         state = state.copy(
             descricao = state.descricao.copy(
                 codigoMensagemErro = validarDescricao(state.descricao.valor)
+            ),
+            valor = state.valor.copy(
+                codigoMensagemErro = validarValor(state.valor.valor)
             )
         )
         return state.formularioValido
