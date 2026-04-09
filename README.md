@@ -40,10 +40,10 @@ Telas do Sistema
 Abaixo apresento como ficaram as telas apos minhas alteracoes, seguindo as diretrizes visuais solicitadas.
 
 Lista de Lancamentos
-![Lista de Lancamentos](Imagens_Readme/lista_lancamentos.png)
+![Lista de Lancamentos](Imagens_Readme/Tela1.png)
 
 Formulario de Lancamento
-![Formulario de Lancamento](Imagens_Readme/formulario_lancamento.png)
+![Formulario de Lancamento](Imagens_Readme/Tela2.png)
 
 Codigo alterado
 @Composable
