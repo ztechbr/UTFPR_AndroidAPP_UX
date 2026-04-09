@@ -1,3 +1,11 @@
+Atendendo as especificações solicitadas, foram ajustados os arquivos abaixo para realizar os ajustes demandados:
+
+*   app/src/main/java/br/edu/utfpr/trabalhofinal/ui/lancamento/lista/ListaLancamentosScreen.kt
+*   app/src/main/java/br/edu/utfpr/trabalhofinal/ui/lancamento/form/FormularioLancamentoScreen.kt
+*   app/src/main/java/br/edu/utfpr/trabalhofinal/ui/lancamento/form/FormularioLancamentoViewModel.kt
+*   app/src/main/java/br/edu/utfpr/trabalhofinal/ui/lancamento/form/composables/FormTextField.kt
+*   app/src/main/res/values/strings.xml
+
 Como estava antes
 O sistema exibia cada item da lista de lancamentos utilizando um componente padrao que agrupava todas as informacoes em uma unica linha de texto. Os dados de data, descricao, valor e status apareciam concatenados, sem diferenciacao visual entre receitas e despesas. Na barra inferior, os valores de saldo e previsao utilizavam a cor padrao do tema, sem destacar se o resultado era positivo ou negativo. No formulario, os campos de descricao e valor nao possuiam icones, a data era um campo de texto comum que permitia digitacao livre e a exclusao de registros ocorria imediatamente apos o clique, sem pedir confirmacao ao usuario. Os botoes de selecao no final do formulario tambem ficavam desalinhados em relacao ao inicio dos campos de texto.
 

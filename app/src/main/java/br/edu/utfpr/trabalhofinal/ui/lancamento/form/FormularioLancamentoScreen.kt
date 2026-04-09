@@ -218,6 +218,7 @@ private fun FormContent(
         val formTextFieldModifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
+        // Por Zaroni - Eu adicionei o ícone Notes externo ao campo de descrição
         FormTextField(
             modifier = formTextFieldModifier,
             label = stringResource(R.string.descricao),
@@ -233,6 +234,7 @@ private fun FormContent(
                 )
             }
         )
+        // Por Zaroni - Eu adicionei o ícone AttachMoney externo ao campo de valor
         FormTextField(
             modifier = formTextFieldModifier,
             label = stringResource(R.string.valor),
@@ -248,6 +250,7 @@ private fun FormContent(
                 )
             }
         )
+        // Por Zaroni - Eu utilizei o componente FormDatePicker para seleção de data
         FormDatePicker(
             modifier = formTextFieldModifier,
             label = stringResource(R.string.data),
@@ -266,6 +269,7 @@ private fun FormContent(
             },
             enabled = !processando
         )
+        // Por Zaroni - Eu apliquei um deslocamento na Row para alinhar os botões de rádio com os campos acima
         Row(modifier = Modifier.padding(start = 48.dp)) {
             FormRadioButton(
                 modifier = Modifier.padding(vertical = 8.dp),
